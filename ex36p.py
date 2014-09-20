@@ -224,6 +224,10 @@ def bear_approach():
 
 def bear_sneak():
 	print("You try to sneak by the bear")
+	print ("...")
+	sleep(3)
+	print("......")
+	sleep(2)
 
 
 start_room()
