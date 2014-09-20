@@ -1,0 +1,14 @@
+PLANS FOR py36
+
+Practical:
+
+A new inventory system
+
+health and hit system
+
+longer and more indepth storyline
+
+Better explaining the environment 
+
+Explain the players options in a good way
+
