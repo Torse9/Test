@@ -12,3 +12,4 @@ Better explaining the environment
 
 Explain the players options in a good way
 
+Add colors to text and board for more innlevelse

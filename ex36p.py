@@ -13,6 +13,7 @@ crack = 0
 
 def start_room():
 	system('cls')
+	system('color 06')
 	print "You find yourself in an empty black painted room with a metallic rimmed door to" 
 	print "the left and one wooden door to the right."
 	print""
@@ -42,7 +43,10 @@ def start_room():
 			dead("You walk around the room in confusion until you starve.")
 
 def dead(why):
+	system('COLOR C0')
 	print why, "Good job!"
+	raw_input("")
+	system('COLOR 07')
 	exit(0)
 
 
@@ -228,6 +232,14 @@ def bear_sneak():
 	sleep(3)
 	print("......")
 	sleep(2)
+	check = raw_input("The bear snores loudly, do you continue to walk or stop?\n> ")
 
-
+	if check == "continue":
+		print("You continue to sneak")
+		print("The bear wakes up and rips your head off.")
+		dead("Yep")
+	else:
+		print("You stop")
+		print("The bear takes a deep breath and snore some more.")
+		print("You: Pheew!")
 start_room()
