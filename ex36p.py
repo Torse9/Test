@@ -13,12 +13,13 @@ crack = 0
 
 def start_room():
 	system('cls')
-	system('color 06')
-	print "You find yourself in an empty black painted room with a metallic rimmed door to" 
-	print "the left and one wooden door to the right."
+
+	print "You are in a black empty room with a metallic rimmed door to" 
+	print "the left and a wooden door to the right."
 	print""
-	print"What do you do?"
 	
+	print"What do you do?"
+
 	while True:
 		
 		next = raw_input("> ")
@@ -43,7 +44,7 @@ def start_room():
 			dead("You walk around the room in confusion until you starve.")
 
 def dead(why):
-	system('COLOR C0')
+	system('COLOR 0C')
 	print why, "Good job!"
 	raw_input("")
 	system('COLOR 07')
@@ -54,15 +55,17 @@ def pit_room():
 	global crack
 
 	if crack == 0:
-		print "As you close the door behind you, you see a huge crack in the"
-		print "floor from one end of the room to the other." 
-		print "You can also see a door on the other side. "
-		print "There got to be something you can use to cross."
-		print "But the room is empty..."
-	else:
-		print "As you close the door behind you, you see a huge crack in the"
+		print "You close the door behind you."
+		print "There is a huge crack in the"
 		print "floor from one end of the room to the other."
-		print " But you have already placed a plank there."
+		print "It's not possible to cross." 
+		print "You see a door on the other side. "
+		print "The room is empty..."
+	else:
+		print "You close the door behind you."
+		print "You see a huge crack in the"
+		print "floor from one end of the room to the other."
+		print "You have already placed a plank there."
 
 
 	while True:
@@ -133,8 +136,7 @@ def Plank_room():
 	with some light shining through, and a loose plank on the ground."""
 	else:
 		print("""This room looks empty. There is a window 
-	with some light shining through. 
-	All of a sudden, you smell an aweful stench! You wonder what it is about....""")
+	with some light shining through.""")
 
 
 	while True:
@@ -169,7 +171,6 @@ def Treassure_room():
 
 def bear_room():
 	x = 0
-	print "This is a test of the new room."
 	print "Going through the door you enter a deep and dimly lit cave."
 	print "But you can see a huge sleeping bear right right in the middle of the caveroom.!"
 	print "You don't know if it is aggressive but do you take the risk?"
@@ -216,7 +217,9 @@ def bear_room():
 
 
 def bear_approach():
-	print ("You approach the bear, but the bear....")
+	print ("You approach the bear...")
+	sleep(1)
+	print("")
 	
 		
 		
