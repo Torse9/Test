@@ -6,10 +6,11 @@ from time import sleep
 #Retarded ideas
 #Bedre inventory
 inventory = []
+inventory.append("knife")
 global plank_in_place
 plank_in_place = 1
-global crack
-crack = 0
+global hole
+hole = 0
 
 def start_room():
 	system('cls')
@@ -23,10 +24,14 @@ def start_room():
 	while True:
 		
 		next = raw_input("> ")
-		if next in ["walk left","go left","left","move left","go to the left"]:
+		if next in ["walk left","go left","left","move left","go to the left","metallic door","go to the metallic door","go metallic door","go metallic door","go to metal","go metal"]:
+			print("You open the door.")
+			sleep(1)
 			system('cls')
 			pit_room()
 		elif next in ["walk right","go right","right","move right","go to the right"]:  
+			print("You open the door.")
+			sleep(1)
 			system('cls')
 			Plank_room()
 	#Cheat ;)
@@ -52,18 +57,22 @@ def dead(why):
 
 
 def pit_room():
-	global crack
+	global hole
 
-	if crack == 0:
+	if hole == 0:
 		print "You close the door behind you."
-		print "There is a huge crack in the"
+		print "\n\n"
+		print "There is a huge hole in the"
 		print "floor from one end of the room to the other."
+		print ""
 		print "It's not possible to cross." 
+		print ""
 		print "You see a door on the other side. "
-		print "The room is empty..."
+		print ""
+		print item_in_room("pit_room")
 	else:
 		print "You close the door behind you."
-		print "You see a huge crack in the"
+		print "You see a huge hole in the"
 		print "floor from one end of the room to the other."
 		print "You have already placed a plank there."
 
@@ -71,22 +80,22 @@ def pit_room():
 	while True:
 		next = raw_input("\n> ")
 
-		if next in ["plank","place plank","use plank","place plank on crack","place plank crack"]:
+		if next in ["plank","place plank","use plank","place plank on hole","place plank hole"]:
 			
-			if "plank" in inventory and crack == 0:
-				crack = 1
-				print ("You place the plank on the crack.")
+			if "plank" in inventory and hole == 0:
+				hole = 1
+				print ("You place the plank on the hole.")
 				inventory.remove("plank")
 				print ("You can go up to the next room now.")#Explain how,
 			
-			elif crack == 0:
+			elif hole == 0:
 				print ("Yes, maybe there is a plank somewhere... but not here")	
 			else:
 				print "You have already placed a plank there"
 				
 		elif next == "go back" or next == "back":
 			print "You open the door and go back"
-			sleep(2)
+			sleep(1)
 			system('cls')
 			start_room()
 		
@@ -99,20 +108,20 @@ def pit_room():
 			inventory.append("plank")
 
 		elif next in ["cross plank","walk across plank","walk over plank","move over plank","cross","walk plank","walk plank"]:
-			if crack == 1:
+			if hole == 1:
 				print "You carefully walk over the plank and move to the next room."
 				sleep(3)
 				system('cls')
 				Treassure_room()
 
 			else:
-				print ("I can't make the jump over that crack.")
+				print ("I can't make the jump over that hole.")
 
 		elif next in ["jump","jump over"]:
-			y = raw_input("Are you sure you want to jump over? The crack is very deep...\n> ")
+			y = raw_input("Are you sure you want to jump over? The hole is very deep...\n> ")
 
 			if y in ["Yes","yes","I'm sure","Absolutely","absolutely","y","ye","yup","yeah"]:
-				dead("You try to jump over the crack, but it's to wide. You fall and get stabbed \n by the spears at the bottom.")
+				dead("You try to jump over the hole, but it's to wide. You fall and get stabbed \n by the spears at the bottom.")
 			else:
 				print("You changed your mind.")
 
@@ -120,7 +129,7 @@ def pit_room():
 			print ("You pick the plank up again and place it in your inventory")
 			plank_in_place = 1
 
-		elif next in ["cut plank"] and "plank" in inventory:
+		elif next in ["cut plank"] and "plank" in inventory and 'knife' in inventory:
 			print("You cut the plank into a spear")
 			inventory.remove("plank")
 			inventory.append("spear")
@@ -129,14 +138,23 @@ def pit_room():
 			print("I have no idea what %r means.") % next
 
 
+def item_in_room(floor):
+	if floor == "pit_room":
+		print ("Right so far")
+	if floor == "plank_room":
+		print ("That is correct")
+
+
 def Plank_room():
 	global plank_in_place
 	if plank_in_place == 1:
 		print """This room looks empty. There is a window 
-	with some light shining through, and a loose plank on the ground."""
+		with some light shining through, and a loose plank on the ground."""
+		print item_in_room("plank_room")
+	
 	else:
 		print("""This room looks empty. There is a window 
-	with some light shining through.""")
+		with some light shining through.""")
 
 
 	while True:
@@ -150,7 +168,7 @@ def Plank_room():
 			print ("You already got that in your inventory.")
 
 		elif next in ["take plank","pick up plank","pick plank","plank"] and plank_in_place == 0 and not "plank" in inventory:
-			print ("You already placed the plank on the crack.")
+			print ("You already placed the plank on the hole.")
 
 		elif next in ["back","go back"]:
 			system('cls')
@@ -181,7 +199,7 @@ def bear_room():
 		next = raw_input(">")
 		
 		if next in ["approach","approach him","approach it"]:
-			print ("You approach him")
+			print ("You approach it")
 			bear_approach()
 		elif next in ["sneak","sneak by"]:
 			bear_sneak()
@@ -189,11 +207,16 @@ def bear_room():
 		elif next in ["climb","mount"]:
 			print("%r what") % (next)
 			q = raw_input(">")
+
 			
 			if q in ["bear","mount bear","climb bear"]:
 				print ("You do that fuck you.")
 			else:
 				pass
+
+		elif next in ["stab the bear with spear","stab bear","stab",] and 'spear' in inventory:
+			print("You kill the bear")
+			print("He is now dead.")
 
 		elif next in ["mount the bear","mount bear","jump on bear","ride bear","ride the bear","slap"]:	
 			print ("You mount the bear")
@@ -223,11 +246,7 @@ def bear_approach():
 	
 		
 		
-				
-
-
-
-
+			
 
 def bear_sneak():
 	print("You try to sneak by the bear")
